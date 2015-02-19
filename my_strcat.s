@@ -3,6 +3,7 @@
 
 .type my_strcat, @function
 my_strcat:
+	pushq %rdi
         loop:
         cmpb $0, (%rdi)
         je out
@@ -10,5 +11,6 @@ my_strcat:
         jmp loop
         out:
         call my_strcpy
+	popq %rdi
         ret
 

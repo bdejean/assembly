@@ -3,6 +3,7 @@
 
 .type my_puts, @function
 my_puts:
+	pushq %r15
         movq %rdi, %r15
         call my_strlen
         movq %rax, %rdx
@@ -11,5 +12,6 @@ my_puts:
         movq $1, %rax
         syscall
         xorq %rax, %rax
+	popq %r15
         ret
 
