@@ -62,13 +62,7 @@ call my_strcpy
 
 # replace the last '\n' with a space
 movq %r15, %rdi
-call my_strlen
-movq %r15, %rdi
-addq %rax, %rdi
-cmpb $'\n', -1(%rdi)
-jne .next1
-movb $' ', -1(%rdi)
-.next1:
+callq my_chomp
 
 # append some text again
 movq %r15, %rdi
