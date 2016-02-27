@@ -44,6 +44,7 @@ byebyez2:
 	movq $0, %rdi
 	syscall
 
+
 .global _start
 _start:
 movaps a, %xmm0
@@ -77,12 +78,20 @@ addq $128, %rsp
 
 movq $0x1000, %rdi
 call my_malloc
-movq %rax, %r14
-movq %r14, %rdi
-movq %r15, %rsi
-callq my_strcpy
 
-movq %r14, %rdi
+pushq %rax
+
+movq %rax, %rdi
+movb $0x20, %al
+.ascii_loop:
+movb %al, (%rdi)
+incb %al
+incq %rdi
+cmpb $0x7E, %al
+jle .ascii_loop
+movb $0, (%rdi)
+
+popq %rdi
 call my_puts
 
 call byebyez2
