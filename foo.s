@@ -3,8 +3,8 @@
 a: .float 0, 1, 2, 3
 b: .float 4, 5, 6, 7
 
-byebye_text: .ascii "See you soon\n"
-byebye_textz: .asciz "See you soon!\n"
+byebye_text: .ascii "See you soon"
+byebye_textz: .asciz "See you soon!"
 byebye_len: .int 13
 
 .section .data
