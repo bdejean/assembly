@@ -75,6 +75,16 @@ call my_puts
 
 addq $128, %rsp
 
+movq $0x1000, %rdi
+call my_malloc
+movq %rax, %r14
+movq %r14, %rdi
+movq %r15, %rsi
+callq my_strcpy
+
+movq %r14, %rdi
+call my_puts
+
 call byebyez2
 
 
