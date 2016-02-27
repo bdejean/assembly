@@ -4,10 +4,10 @@ OBJ:=$(patsubst %.s, %.o, $(SRC))
 
 .PHONY: all clean
 
-all: foo
+all: foo hello
 
 clean:
-	$(RM) $(OBJ)
+	$(RM) $(OBJ) hello.o
 
 %.o: %.s
 	$(CC) $(CFLAGS) $^ -c -o $@
@@ -15,4 +15,6 @@ clean:
 foo: $(OBJ)
 	$(CC) $(CFLAGS) $^ -o $@
 
+hello: hello.o
+	$(CC) $(CFLAGS) $^ -o $@
 
