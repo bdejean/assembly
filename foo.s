@@ -5,7 +5,7 @@ b: .float 4, 5, 6, 7
 
 byebye_text: .ascii "See you soon"
 byebye_textz: .asciz "See you soon!"
-byebye_len: .int 13
+byebye_len: .int 12
 
 .section .data
 .align 16
@@ -57,14 +57,37 @@ subq $128, %rsp
 movq %rsp, %r15
 
 # fill it
-movq %r15, %rdi
+movq %rsp, %rdi
 movq $byebye_textz, %rsi
 call my_strcpy 
 
-# replace the last '\n' with a space
-movq %r15, %rdi
+
+movq %rsp, %rdi
+callq my_puts
+
+
+# add last '\n' and chomp it
+
+movq %rsp, %rdi
+subq $8, %rsp
+movq $'\n', (%rsp)
+leaq (%rsp), %rsi
+callq my_strcat
+addq $8, %rsp
+
+movq %rsp, %rdi
 callq my_chomp
 
+# already chomped
+movq %rsp, %rdi
+callq my_chomp
+
+
+movq %rsp, %rdi
+callq my_puts
+
+
+	
 # append some text again
 movq %r15, %rdi
 movq $byebye_textz, %rsi
