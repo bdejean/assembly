@@ -11,8 +11,8 @@ hello_addr:
 
 .lcomm buf, 4096
 
+.section .text
 .align 4
-
 .global my_exit
 my_exit:
 	mov r0, $0
