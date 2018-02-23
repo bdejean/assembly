@@ -26,7 +26,7 @@ my_exit:
 .align
 .global _start
 _start:
-	push {lr}
+	push {r4, lr}
 
 	mov r0, $1 //stdout
 	ldr r1, hello_addr // i don't understand why it works if hello_addr is not aligned
@@ -46,8 +46,10 @@ _start:
 	mov r7, $4
 	swi $0
 
+	sub sp, sp, #4096
+	mov r4, sp
 
-	ldr r0, =buf
+	mov r0, r4
 	ldr r1, =hello
 	bl my_strcpy
 	// returns r0, no need to reload it
@@ -58,11 +60,13 @@ _start:
 	// returns r0, no need to reload it
 	bl my_print
 
-	ldr r0, =buf
+	mov r0, r4
 	bl my_strchomp
 	bl my_puts
 
-	pop {lr}
+	add sp, sp, #4096
+
+	pop {r4, lr}
 	
 	bl my_exit
 	
