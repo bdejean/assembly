@@ -13,6 +13,7 @@ build hello.o: assemble hello.s
 build my_strlen.o: assemble my_strlen.s
 build my_strcpy.o: assemble my_strcpy.s
 build my_strcat.o: assemble my_strcat.s
-build hello: link hello.o my_strlen.o my_strcpy.o my_strcat.o
+build my_strchomp.o: assemble my_strchomp.s
+build hello: link hello.o my_strlen.o my_strcpy.o my_strcat.o my_strchomp.o
 
 

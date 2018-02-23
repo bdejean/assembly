@@ -7,6 +7,10 @@ hello_len = .-hello
 hello_addr:
 	.word hello
 
+eol:
+	.asciz "\n"
+
+
 .section .data
 
 .lcomm buf, 4096
@@ -19,6 +23,29 @@ my_exit:
 	mov r7, $1
 	swi $0
 
+
+.global my_print
+my_print:
+	push {r4, lr}
+	mov r4, r0
+	bl my_strlen
+	mov r2, r0
+	mov r0, $1
+	mov r1, r4
+	mov r7, $4
+	swi $0
+	pop {r4, lr}
+	bx lr
+
+
+.global my_puts
+my_puts:
+	push {lr}
+	bl my_print
+	ldr r0, =eol
+	bl my_print
+	pop {lr}
+	bx lr
 
 .global _start
 _start:
@@ -45,15 +72,18 @@ _start:
 
 	ldr r0, =buf
 	ldr r1, =hello
-	bl my_strcat
+	bl my_strcpy
+	// returns r0, no need to reload it
+	bl my_strchomp
+	// returns r0, no need to reload it
 	ldr r1, =hello
 	bl my_strcat
-	bl my_strlen
-	mov r2, r0
-	mov r0, $1
-	ldr r1, =buf
-	mov r7, $4
-	swi $0
+	// returns r0, no need to reload it
+	bl my_print
+
+	ldr r0, =buf
+	bl my_strchomp
+	bl my_puts
 
 	pop {lr}
 	
