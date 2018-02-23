@@ -1,5 +1,5 @@
-
 .section .text
+.align
 hello:
 	.asciz "Hello World\n"
 hello_len = .-hello
@@ -12,8 +12,9 @@ eol:
 
 
 .section .data
-
+.align 2
 .lcomm buf, 4096
+
 
 .section .text
 .align 2
@@ -52,7 +53,7 @@ _start:
 	push {lr}
 
 	mov r0, $1 //stdout
-	# ldr r1, hello_addr
+	ldr r1, hello_addr // i don't understand why it works if hello_addr is not aligned
 	ldr r1, =hello
 	mov r2, $hello_len
 	# ldr r2, =hello_len
