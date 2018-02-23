@@ -1,2 +1,5 @@
 .ninja*
 *.o
+*.bak
+*.swp
+a.out
