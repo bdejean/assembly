@@ -1,4 +1,4 @@
-.align 4
+.align 2
 .global my_strcat
 my_strcat:
 	push {r4, r5, lr}

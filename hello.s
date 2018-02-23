@@ -16,7 +16,7 @@ eol:
 .lcomm buf, 4096
 
 .section .text
-.align 4
+.align 2
 .global my_exit
 my_exit:
 	mov r0, $0
