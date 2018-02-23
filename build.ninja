@@ -1,0 +1,15 @@
+asflags = -g
+ldflags = -g -O2
+
+
+rule assemble
+     command = as $asflags $in -o $out
+
+rule link
+     command = ld $ldflags $in -o $out
+
+
+build hello.o: assemble hello.s
+build my_strlen.o: assemble my_strlen.s
+build hello: link hello.o my_strlen.o
+
