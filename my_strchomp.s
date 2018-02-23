@@ -1,4 +1,4 @@
-.align 2
+.align
 .global my_strchomp
 my_strchomp:
 	push {r4, lr}

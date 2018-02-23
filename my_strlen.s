@@ -1,4 +1,4 @@
-.align 2
+.align
 .global my_strlen
 my_strlen:
 	mov r1, r0

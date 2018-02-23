@@ -2,18 +2,20 @@
 .align
 hello:
 	.asciz "Hello World\n"
+.align
 hello_len = .-hello
 
+.align
 hello_addr:
 	.word hello
 
 .section .data
-.align 2
+.align
 .lcomm buf, 4096
 
 
 .section .text
-.align 2
+.align
 .global my_exit
 my_exit:
 	mov r0, $0
@@ -21,6 +23,7 @@ my_exit:
 	swi $0
 
 
+.align
 .global _start
 _start:
 	push {lr}

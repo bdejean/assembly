@@ -1,4 +1,4 @@
-.align 2
+.align
 .global my_strcpy
 my_strcpy:
 	sub r2, r0, #1
