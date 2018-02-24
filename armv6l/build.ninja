@@ -1,4 +1,4 @@
-asflags = -g
+asflags = -g -mfpu=vfp
 ldflags = -g -O2
 
 
