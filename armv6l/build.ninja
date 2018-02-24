@@ -17,4 +17,7 @@ build my_strchomp.o: assemble my_strchomp.s
 build my_strfuncs.o: assemble my_strfuncs.s
 build hello: link hello.o my_strlen.o my_strcpy.o my_strcat.o my_strchomp.o my_strfuncs.o
 
+build true.o: assemble true.s
+build true: link true.o
+
 
