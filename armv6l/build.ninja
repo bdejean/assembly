@@ -8,6 +8,9 @@ rule assemble
 rule link
      command = ld $ldflags $in -o $out
 
+rule link_with_libc
+     command = ld $ldflags -o $out -dynamic-linker /lib/ld-linux-armhf.so.3 /usr/lib/arm-linux-gnueabihf/crt1.o /usr/lib/arm-linux-gnueabihf/crti.o -lc $in /usr/lib/arm-linux-gnueabihf/crtn.o
+
 
 build hello.o: assemble hello.s
 build my_strlen.o: assemble my_strlen.s
@@ -19,5 +22,8 @@ build hello: link hello.o my_strlen.o my_strcpy.o my_strcat.o my_strchomp.o my_s
 
 build true.o: assemble true.s
 build true: link true.o
+
+build ctime.o: assemble ctime.s
+build ctime: link_with_libc ctime.o
 
 
