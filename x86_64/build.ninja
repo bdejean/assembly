@@ -1,0 +1,33 @@
+asflags = -g
+ldflags = -g -O2
+
+
+rule assemble
+     command = as $asflags $in -o $out
+
+rule link
+     command = ld $ldflags $in -o $out
+
+rule link_with_libc
+     command = ld $ldflags -o $out -dynamic-linker /lib/ld-linux-armhf.so.3 /usr/lib/arm-linux-gnueabihf/crt1.o /usr/lib/arm-linux-gnueabihf/crti.o -lc $in /usr/lib/arm-linux-gnueabihf/crtn.o
+
+
+build hello.o: assemble hello.s
+build hello: link hello.o
+
+build foo.o: assemble foo.s
+build my_chomp.o: assemble my_chomp.s
+build my_malloc.o: assemble my_malloc.s
+build my_puts.o: assemble my_puts.s
+build my_strcat.o: assemble my_strcat.s
+build my_strcpy.o: assemble my_strcpy.s
+build my_strlen.o: assemble my_strlen.s
+build foo: link foo.o my_chomp.o my_malloc.o my_puts.o my_strcat.o my_strcpy.o my_strlen.o
+
+# build true.o: assemble true.s
+# build true: link true.o
+
+# build ctime.o: assemble ctime.s
+# build ctime: link_with_libc ctime.o
+
+
