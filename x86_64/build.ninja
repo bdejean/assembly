@@ -24,8 +24,8 @@ build my_strcpy.o: assemble my_strcpy.s
 build my_strlen.o: assemble my_strlen.s
 build foo: link foo.o my_chomp.o my_malloc.o my_puts.o my_strcat.o my_strcpy.o my_strlen.o
 
-# build true.o: assemble true.s
-# build true: link true.o
+build true.o: assemble true.s
+build true: link true.o
 
 # build ctime.o: assemble ctime.s
 # build ctime: link_with_libc ctime.o
