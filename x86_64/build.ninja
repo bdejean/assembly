@@ -9,7 +9,7 @@ rule link
      command = ld $ldflags $in -o $out
 
 rule link_with_libc
-     command = ld $ldflags -o $out -dynamic-linker /lib/ld-linux-armhf.so.3 /usr/lib/arm-linux-gnueabihf/crt1.o /usr/lib/arm-linux-gnueabihf/crti.o -lc $in /usr/lib/arm-linux-gnueabihf/crtn.o
+     command = ld $ldflags -o $out -dynamic-linker /lib64/ld-linux-x86-64.so.2 /usr/lib/x86_64-linux-gnu/crt1.o /usr/lib/x86_64-linux-gnu/crti.o -lc $in /usr/lib/x86_64-linux-gnu/crtn.o
 
 
 build hello.o: assemble hello.s
@@ -27,7 +27,7 @@ build foo: link foo.o my_chomp.o my_malloc.o my_puts.o my_strcat.o my_strcpy.o m
 build true.o: assemble true.s
 build true: link true.o
 
-# build ctime.o: assemble ctime.s
-# build ctime: link_with_libc ctime.o
+build ctime.o: assemble ctime.s
+build ctime: link_with_libc ctime.o
 
 

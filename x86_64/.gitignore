@@ -1,4 +1,5 @@
 *.o
+ctime
 hello
 foo
 true
