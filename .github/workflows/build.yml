@@ -28,5 +28,5 @@ jobs:
       # Runs a single command using the runners shell
       - name: x86_64
         run: |
-          apt-get -y install ninja-build
+          sudo apt-get -y install ninja-build
           ninja -C x86_64
